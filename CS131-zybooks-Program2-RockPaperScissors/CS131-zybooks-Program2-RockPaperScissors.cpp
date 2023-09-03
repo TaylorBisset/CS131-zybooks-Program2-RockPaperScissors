@@ -1,8 +1,76 @@
 #include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    const int ROCK = 0;
+    const int PAPER = 1;
+    const int SCISSORS = 2;
+
+    string player1, player2;
+    int seed, numRounds;
+    int player1Wins = 0;
+    int player2Wins = 0;
+
+    cin >> seed >> player1 >> player2 >> numRounds;
+    srand(seed);
+    while (numRounds <= 0)
+    {
+        cout << "Rounds must be > 0" << endl;
+        cin >> numRounds;
+    }
+    cout << player1 << " vs " << player2 << " for " << numRounds << " rounds" << endl;
+
+    for (int round = 1; round <= numRounds;)
+    {
+        int player1Choice = rand() % 3;
+        int player2Choice = rand() % 3;
+
+        if (player1Choice == player2Choice)
+        {
+            cout << "Tie" << endl;
+        }
+        else
+        {
+            round++;
+        }
+
+        if (player1Choice == ROCK && player2Choice == SCISSORS)
+        {
+            cout << player1 << " wins with rock" << endl;
+            player1Wins++;
+        }
+        else if (player1Choice == SCISSORS && player2Choice == PAPER)
+        {
+            cout << player1 << " wins with scissors" << endl;
+            player1Wins++;
+        }
+        else if (player1Choice == PAPER && player2Choice == ROCK)
+        {
+            cout << player1 << " wins with paper" << endl;
+            player1Wins++;
+        }
+        else if (player2Choice == ROCK && player1Choice == SCISSORS)
+        {
+            cout << player2 << " wins with rock" << endl;
+            player2Wins++;
+        }
+        else if (player2Choice == SCISSORS && player1Choice == PAPER)
+        {
+            cout << player2 << " wins with scissors" << endl;
+            player2Wins++;
+        }
+        else if (player2Choice == PAPER && player1Choice == ROCK)
+        {
+            cout << player2 << " wins with paper" << endl;
+            player2Wins++;
+        }
+    }
+
+    cout << player1 << " wins " << player1Wins << " and " << player2 << " wins " << player2Wins << endl;
+
+
+    return 0;
+
 }
 
 /*
